@@ -1,0 +1,338 @@
+/* 🌐 전체 페이지 레이아웃 */
+.page-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #ebf4ff, #c3dafe);
+  font-family: sans-serif;
+}
+
+.Page-Container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #ebf4ff, #c3dafe);
+  font-family: sans-serif;
+}
+
+/* 🧭 공통 헤더 레이아웃 */
+.header {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 1.5rem;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* 모바일 대응 */
+@media screen and (max-width: 768px) {
+  .btn.login,
+  .lang-button {
+    display: none;
+  }
+}
+
+/* 🔰 왼쪽: 아이콘 + 타이틀 */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-box {
+  background: linear-gradient(to right, #3b82f6, #6366f1);
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.title-group {
+  display: flex;
+  /* flex-direction: row; */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+}
+
+.title-group h1 {
+  font-size: 2.25rem;
+  margin: 0;
+  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  writing-mode: horizontal-tb;
+  white-space: normal;
+}
+
+.title-group p {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  text-align: center;
+  writing-mode: horizontal-tb;
+  white-space: normal;
+}
+
+/* 🎯 오른쪽: 버튼 그룹 + 언어 선택 */
+.right {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn {
+  font-size: 1.125rem;
+  padding: 0.75rem 1.125rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.outline {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.btn.primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 🌍 언어 선택 드롭다운 */
+.lang-selector {
+  position: relative;
+}
+
+/* 🌍 언어 선택 버튼 */
+.lang-button {
+  padding: 10px 16px;
+  font-size: 2rem;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 140px;
+  z-index: 1000;
+}
+
+.dropdown li {
+  padding: 12px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+/* 🔑 로그인 버튼 */
+.btn.login {
+  background-color: transparent;
+  color: black;
+  font-weight: 600;
+  font-size: 1.5rem; /* ✅ 글씨 크기 증가 (기존 0.875rem → 약 18px) */
+}
+
+/* 상단 알림 박스 */
+.alert-box {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin: 20px auto;
+  max-width: 1100px;
+  font-size: 14px;
+}
+
+/* 메인 콘텐츠 */
+.scheduler-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 30px auto 0px; /* 위쪽, 좌우, 아래쪽*/
+}
+
+.circle-scheduler{
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 500px;
+  min-width: 320px;
+  max-height: 600px;
+  margin-bottom: 30px; /* 위쪽, 좌우, 아래쪽*/
+}
+
+.circle-image {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.time-list {
+  list-style: none;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.time-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.time-list li span {
+  color: #888;
+  font-style: italic;
+}
+
+/* 24시간 시계 작성부 */
+.clock-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.clock {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #ffffff, #f3f4f6);
+  border: 6px solid #d1d5db;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 0 6px 12px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #111827;
+  background-color: #ffffffd0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hand {
+  position: absolute;
+  width: 2px;
+  height: 45%;
+  background-color: #e11d48; /* 진한 빨간색 */
+  top: 5%;
+  left: 50%;
+  transform-origin: bottom;
+  transition: transform 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: #e11d48;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+/* 유저 정보 표기 */
+.username {
+  padding: 10px 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 140px;
+  z-index: 1000;
+}
+
+.user-dropdown-menu li {
+  padding: 12px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.user-dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}

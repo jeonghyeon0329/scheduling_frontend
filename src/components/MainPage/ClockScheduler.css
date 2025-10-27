@@ -1,0 +1,281 @@
+/* ClockScheduler.css */
+.clock-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto; 
+}
+
+.scheduler-subtitle {
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.clock {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #ffffff, #f3f4f6);
+  border: 6px solid #d1d5db;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px; /* 날짜와 시계사이의 간격 */
+}
+
+.clock-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #111827;
+  background-color: #ffffffd0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hand {
+  position: absolute;
+  width: 2px;
+  height: 45%;
+  background-color: #e11d48; 
+  top: 5%;
+  left: 50%;
+  transform-origin: bottom;
+  transition: transform 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: #e11d48;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-input {
+  /* margin-top: 5px; */
+  background: #f9fafb;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.schedule-input textarea {
+  width: 100%;
+  margin-top: 4px;
+  padding: 3px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.schedule-input button {
+  margin-top: 2px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 동적 SVG arc 표시를 위한 스타일 */
+.arc-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.arc-path {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+/* 📌 일정 입력창 */
+.schedule-input.beautiful {
+  margin-top: 1vh;
+  padding: 10px;
+  background: linear-gradient(to bottom right, #fafafa, #f0f4ff);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.schedule-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4f46e5;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.schedule-label-box {
+  pointer-events: auto;
+  user-select: none;
+}
+
+.time-display.improved-time {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.time-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-right: 4px;
+}
+
+.time-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1f2937;
+  background: #e0e7ff;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+/* 일정 입력 텍스트박스 */
+
+.input-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.input-box {
+  flex: 1; /* 너비 자동 조정 */
+  max-width: 350px;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  resize: none;
+  background-color: #fff;
+  /* margin-bottom: 12px; */
+  transition: border 0.3s;
+  height: auto; /* 혹은 적절한 높이로 설정 */
+  min-height: 40px; /* 기본 최소 높이 */
+  line-height: 1.5; /* 줄 간격 */
+  vertical-align: middle; /* 세로 정렬 보정 */ 
+}
+
+.input-box:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.save-button,
+.delete-button {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.button-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+/* 저장 버튼 */
+.save-button {
+  background-color: #bae6fd !important;
+  color: #1e3a8a;
+}
+
+.save-button:hover {
+  background-color: #0284c7 !important;
+}
+
+/* 삭제 버튼 */
+.delete-button {
+  background-color: #fecdd3 !important;
+  color: #7f1d1d;
+}
+
+.delete-button:hover {
+  background-color: #e11d48 !important;
+}
+
+
+
+.sector-svg line {
+  transition: all 0.3s ease;
+}
+
+/* 스케줄 표현하는 글자 디자인 */
+.schedule-label {
+  font-size: 15px;
+  fill: #374151; /* tailwind slate-700 */
+  font-weight: 600;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+.sector-path {
+  transition: fill 0.3s ease;
+}
+
+/* 계획 수정 부분 */
+.edit-panel {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-panel input {
+  padding: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
