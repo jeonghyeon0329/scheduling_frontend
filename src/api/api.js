@@ -1,4 +1,3 @@
-
 const request = async (url, method = 'POST', body = null, headers = {}) => {
   const config = {
     method,
@@ -13,13 +12,16 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
   }
 
   const response = await fetch(url, config);
+  const data = await response.json().catch(() => ({})); // JSON 파싱 실패 대비
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || 'API 요청 실패');
+    throw {
+      status: response.status,
+      data,
+    };
   }
 
-  return response.json();
+  return data;
 };
 
 export default request;
