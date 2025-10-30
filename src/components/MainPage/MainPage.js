@@ -2,6 +2,7 @@ import React, { useRef, useReducer, useEffect, useState} from 'react';
 import languagePack from '../../language';
 import { IMAGE_PATHS } from '../../constants/constants';
 import LoginPopup from './LoginPopup';
+import { logout } from '../../api/authApis';
 import DetailScheduler from './DetailScheduler';
 import ClockScheduler from './ClockScheduler';
 import Calendar from './Calendar';
@@ -15,7 +16,7 @@ function MainPage() {
     showUserMenu: false,
   };
   
-  const dropdownRef = useRef();
+  // const dropdownRef = useRef();
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -101,12 +102,19 @@ function MainPage() {
                 {showUserMenu && (
                   <ul className="dropdown">
                     {/* <li onClick={() => alert('회원정보 변경')}>회원정보 변경</li> */}
-                    <li onClick={() => {
-                      localStorage.removeItem('refreshToken');
-                      localStorage.removeItem('userName');
-                      setUser(null);
-                      dispatch({ type: 'CLOSE_ALL_DROPDOWNS' });
-                    }}>
+                    <li onClick={async () => {
+                        try {
+                          await logout();
+                          localStorage.removeItem('userName');
+                          setUser(null);
+                          alert('로그아웃 되었습니다.');
+                        } catch (error) {
+                          alert('로그아웃 중 오류가 발생했습니다.');
+                        } finally {
+                          dispatch({ type: 'CLOSE_ALL_DROPDOWNS' });
+                        }
+                      }}
+                    >
                       로그아웃
                     </li>
                   </ul>

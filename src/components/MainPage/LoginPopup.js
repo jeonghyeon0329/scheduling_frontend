@@ -15,20 +15,14 @@ const LoginPopup = ({ onClose, setUser }) => {
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onClose]);
-  // 범진 인사
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       const data = await login(usrname, password);
-      console.log("로그인 성공")
-      console.log(data)
-      
-      // const { userName, accessToken, refreshToken } = data;
-      
-      // localStorage.setItem('refreshToken', refreshToken);
-      // localStorage.setItem('userName', userName);
-      // setUser({userName})
+      setUser({ userName: data.email });
+      localStorage.setItem('userName', data.email);
       onClose();
     } catch (error) {
       if (error.status === 401) {
@@ -36,6 +30,7 @@ const LoginPopup = ({ onClose, setUser }) => {
       } else if (error.status >= 500) {
         alert('서버 접속이 지연되고 있습니다. 잠시 후 다시 시도해주세요.');
       } else {
+        // error.status := undefined
         alert('로그인 요청 중 오류가 발생했습니다.');
       }
     } finally {
@@ -63,9 +58,6 @@ const LoginPopup = ({ onClose, setUser }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {/* <button type="submit" disabled={isLoading}>
-            {isLoading ? '진행중...' : '로그인'}
-          </button> */}
           <button type="submit" disabled={isLoading}>
             {isLoading ? (
               <FaSpinner className="spinner-icon" />
