@@ -107,6 +107,7 @@ function MainPage() {
                           await logout();
                           localStorage.removeItem('userName');
                           setUser(null);
+                          window.location.reload();
                         } catch (error) {
                           alert('로그아웃 중 오류가 발생했습니다.');
                         } finally {
