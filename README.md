@@ -1,6 +1,6 @@
 # scheduling backend
 스케줄링 시스템 프론트 개발
-./public/images/title-page.png
+![메인 페이지](./public/images/title-page.png)
 
 ---
 ## 📦 요구 사항
