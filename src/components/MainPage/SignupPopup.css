@@ -1,0 +1,25 @@
+.signup-form input {
+  min-width: 300px;
+  margin-right: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+}
+
+.signup-form > button {
+  min-width: 300px;
+  width: 100%;
+  padding: 10px;
+  background-color: #2ecc71;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.signup-form > button:hover {
+  background-color: #27ae60;
+}

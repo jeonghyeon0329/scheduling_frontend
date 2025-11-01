@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { login } from '../../api/authApis';
 import { FaSpinner } from 'react-icons/fa';
 import './LoginPopup.css';
+import SignupPopup from "./SignupPopup";
 
 const LoginPopup = ({ onClose, setUser }) => {
   const [usrname, setusrname] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -66,11 +68,12 @@ const LoginPopup = ({ onClose, setUser }) => {
             )}
           </button>
           <div className="user-action-row">
-            <button className="user-action" disabled={isLoading} onClick={() => alert("회원가입")}> 회원가입 </button>
+            <button className="user-action" disabled={isLoading} onClick={() => setShowSignup(true)}> 회원가입 </button>
             <button className="user-action" disabled={isLoading} onClick={() => alert("비밀번호 찾기")}> 비밀번호 찾기 </button>
           </div>
         </form>
-        
+        {showSignup && <SignupPopup onClose={() => setShowSignup(false)} />}
+
       </div>
     </div>
   );
