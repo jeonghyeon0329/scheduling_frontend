@@ -23,8 +23,12 @@ const LoginPopup = ({ onClose, setUser }) => {
     setIsLoading(true);
     try {
       const data = await login(usrname, password);
-      setUser({ userName: data.email });
-      localStorage.setItem('userName', data.email);
+      setUser({ 
+        userName: data.email,
+        userDepartment: data.department
+       });
+      // localStorage.setItem('userName', data.email);
+      // localStorage.setItem('userDepartment', data.department);
       onClose();
     } catch (error) {
       if (error.status === 401) {

@@ -115,7 +115,7 @@ function MainPage() {
                     <li onClick={async () => {
                         try {
                           await logout();
-                          localStorage.removeItem('userName');
+                          // localStorage.removeItem('userName');
                           setUser(null);
                           window.location.reload();
                         } catch (error) {

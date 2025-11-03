@@ -10,6 +10,7 @@ function ProfilePopup({ user, onClose }) {
         <button className="close-btn" onClick={onClose}>×</button>
         <h2>내 정보</h2>
         <p><strong>이메일:</strong> {user.userName}</p>
+        <p><strong>소속:</strong> {user.userDepartment ?? "없음"}</p>
         <p><strong>상태:</strong> 로그인 중</p>
       </div>
     </div>
