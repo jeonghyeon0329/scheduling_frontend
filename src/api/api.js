@@ -24,7 +24,8 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
     const response = await fetch(url, config);
     const data = await response.json().catch(() => ({}));
 
-    if (response.status === 401 || response.status === 403) {
+    // if (response.status === 401 || response.status === 403) {
+    if (response.status === 403) {
       console.warn('세션이 만료되었거나 존재하지 않습니다. 페이지를 새로고침합니다.');
       window.location.reload(); // 강제 새로고침
       return; 
@@ -39,7 +40,8 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
 
     return data;
   } catch (error) {
-    if (error.status === 401 || error.status === 403) {
+    // if (error.status === 401 || error.status === 403) {
+    if (error.status === 403) {
       console.warn('세션이 유효하지 않거나 서버 인증이 만료되었습니다.');
       window.location.reload();
     } else {
@@ -50,3 +52,4 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
 };
 
 export default request;
+

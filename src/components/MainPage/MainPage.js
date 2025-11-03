@@ -2,6 +2,7 @@ import React, { useRef, useReducer, useEffect, useState} from 'react';
 import languagePack from '../../language';
 import { IMAGE_PATHS } from '../../constants/constants';
 import LoginPopup from './LoginPopup';
+import ProfilePopup from './ProfilePopup';
 import { logout } from '../../api/authApis';
 import DetailScheduler from './DetailScheduler';
 import ClockScheduler from './ClockScheduler';
@@ -39,6 +40,7 @@ function MainPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   // 로그인 팝업
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [showProfilePopup, setShowProfilePopup] = useState(false);
   // 로그인 정보 관리
   const [user, setUser] = useState(null);
 
@@ -101,6 +103,14 @@ function MainPage() {
                 </span>
                 {showUserMenu && (
                   <ul className="dropdown">
+                    <li
+                      onClick={() => {
+                        setShowProfilePopup(true);
+                        dispatch({ type: 'CLOSE_ALL_DROPDOWNS' });
+                      }}
+                    >
+                      회원정보
+                    </li>
                     {/* <li onClick={() => alert('회원정보 변경')}>회원정보 변경</li> */}
                     <li onClick={async () => {
                         try {
@@ -155,7 +165,11 @@ function MainPage() {
             selectedDate={selectedDate}
             schedules={schedules}
           />
-          {showLoginPopup && <LoginPopup onClose={() => setShowLoginPopup(false)} setUser={setUser} />}
+          {showLoginPopup && 
+            <LoginPopup onClose={() => setShowLoginPopup(false)} setUser={setUser} />}
+          {showProfilePopup && (
+            <ProfilePopup user={user} onClose={() => setShowProfilePopup(false)} />
+          )}
         </div>
       </main>
 

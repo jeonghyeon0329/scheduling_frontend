@@ -131,6 +131,10 @@
   position: relative;
 }
 
+.lang-selector .dropdown {
+  left: 0;
+}
+
 /* 🌍 언어 선택 버튼 */
 .lang-button {
   padding: 10px 16px;
