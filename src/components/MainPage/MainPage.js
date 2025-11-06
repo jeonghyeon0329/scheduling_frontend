@@ -10,6 +10,10 @@ import ClockScheduler from './ClockScheduler';
 import Calendar from './Calendar';
 import './MainPage.css';
 
+
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
+
 function MainPage() {
   
   const navigate = useNavigate();
@@ -45,7 +49,7 @@ function MainPage() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   // 로그인 정보 관리
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(UserContext);
 
   // 일정관리
   const [schedules, setSchedules] = useState([]);
@@ -118,7 +122,7 @@ function MainPage() {
                     >
                       회원정보
                     </li>
-                    {user.userDepartment === 'admin' && (
+                    {user.department === 'admin' && (
                       <li
                         onClick={() => {
                           navigate('/admin/users'); // 관리자 페이지로 이동
@@ -131,6 +135,7 @@ function MainPage() {
                     <li onClick={async () => {
                         try {
                           await logout();
+                          localStorage.removeItem('user');
                           setUser(null);
                           window.location.reload();
                         } catch (error) {

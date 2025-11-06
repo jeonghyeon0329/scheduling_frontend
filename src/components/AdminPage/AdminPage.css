@@ -1,20 +1,29 @@
 .admin-page {
-  padding: 40px;
+  padding: 2rem;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .user-table th,
 .user-table td {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 
-.user-table th {
-  background-color: #f4f4f4;
+.loading-row .loading-bar {
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
