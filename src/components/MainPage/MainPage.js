@@ -1,4 +1,5 @@
 import React, { useRef, useReducer, useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import languagePack from '../../language';
 import { IMAGE_PATHS } from '../../constants/constants';
 import LoginPopup from './LoginPopup';
@@ -11,6 +12,8 @@ import './MainPage.css';
 
 function MainPage() {
   
+  const navigate = useNavigate();
+
   const initialState = {
     lang: 'ko',
     showLangDropdown: false,
@@ -70,6 +73,10 @@ function MainPage() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log('✅ [MainPage] user 정보:', user);
+  // }, [user]);
+
   return (
     <div className="Page-Container">
       <header className="header">
@@ -111,11 +118,19 @@ function MainPage() {
                     >
                       회원정보
                     </li>
-                    {/* <li onClick={() => alert('회원정보 변경')}>회원정보 변경</li> */}
+                    {user.userDepartment === 'admin' && (
+                      <li
+                        onClick={() => {
+                          navigate('/admin/users'); // 관리자 페이지로 이동
+                          dispatch({ type: 'CLOSE_ALL_DROPDOWNS' });
+                        }}
+                      >
+                        관리자 페이지
+                      </li>
+                    )}
                     <li onClick={async () => {
                         try {
                           await logout();
-                          // localStorage.removeItem('userName');
                           setUser(null);
                           window.location.reload();
                         } catch (error) {

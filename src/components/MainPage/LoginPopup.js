@@ -27,8 +27,6 @@ const LoginPopup = ({ onClose, setUser }) => {
         userName: data.email,
         userDepartment: data.department
        });
-      // localStorage.setItem('userName', data.email);
-      // localStorage.setItem('userDepartment', data.department);
       onClose();
     } catch (error) {
       if (error.status === 401) {
