@@ -6,6 +6,6 @@ export const login = async (email, password) => {
 };
 export const logout = () => request(API_URLS.LOGOUT, 'POST');
   
-export const signup = async (email, password, name) => {
-  return await request(API_URLS.SIGNUP, 'POST', { email, password, name });
+export const signup = async (username, name, email, password) => {
+  return await request(API_URLS.SIGNUP, 'POST', { username, name, email, password});
 };

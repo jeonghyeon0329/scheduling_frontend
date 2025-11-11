@@ -10,7 +10,8 @@ function AdminPage() {
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        // const data = await fetchAdminUsers();
+        const tmp_data = await fetchAdminUsers();
+        console.log(tmp_data)
         const data = [
           {
             email: 'admin@example.com',

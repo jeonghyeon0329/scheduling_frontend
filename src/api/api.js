@@ -1,17 +1,15 @@
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+function getToken() {
+  return localStorage.getItem("access_token");
 }
 
-const request = async (url, method = 'POST', body = null, headers = {}) => {
-  const csrftoken = getCookie('csrftoken');
+const request = async (url, method = "POST", body = null, headers = {}) => {
+  const token = getToken();
+
   const config = {
     method,
-    credentials: 'include', // sessionid 쿠키 포함
     headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrftoken || '',
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...headers,
     },
   };
@@ -24,13 +22,6 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
     const response = await fetch(url, config);
     const data = await response.json().catch(() => ({}));
 
-    // if (response.status === 401 || response.status === 403) {
-    if (response.status === 403) {
-      console.warn('세션이 만료되었거나 존재하지 않습니다. 페이지를 새로고침합니다.');
-      window.location.reload(); // 강제 새로고침
-      return; 
-    }
-
     if (!response.ok) {
       const error = new Error(`Request failed with status ${response.status}`);
       error.status = response.status;
@@ -40,16 +31,9 @@ const request = async (url, method = 'POST', body = null, headers = {}) => {
 
     return data;
   } catch (error) {
-    // if (error.status === 401 || error.status === 403) {
-    if (error.status === 403) {
-      console.warn('세션이 유효하지 않거나 서버 인증이 만료되었습니다.');
-      window.location.reload();
-    } else {
-      console.error('요청 중 오류 발생:', error);
-      throw error;
-    }
+    console.error("요청 중 오류 발생:", error);
+    throw error;
   }
 };
 
 export default request;
-

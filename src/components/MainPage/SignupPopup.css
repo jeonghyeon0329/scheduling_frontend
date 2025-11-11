@@ -1,25 +1,168 @@
-.signup-form input {
-  min-width: 300px;
-  margin-right: 10px;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 15px;
-  border: 1px solid #ccc;
+/* 팝업 배경 */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.signup-form > button {
-  min-width: 300px;
-  width: 100%;
-  padding: 10px;
-  background-color: #2ecc71;
+/* 팝업 본체 */
+.signup-layout {
+  display: flex;
+  width: 760px;
+  height: 480px; /* ✅ 고정 높이 */
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* 닫기 버튼 */
+.close-btn-right {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
   border: none;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
+  font-size: 24px;
+  color: #444;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: color 0.2s;
+  z-index: 10;
+}
+.close-btn-right:hover {
+  color: #000;
 }
 
-.signup-form > button:hover {
-  background-color: #27ae60;
+/* 왼쪽 이미지 영역 */
+.character-area {
+  flex: 0.9; /* ✅ 조금 좁게 */
+  background: linear-gradient(180deg, #f5f8ff, #e9eeff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.character-rect-img {
+  width: 85%; /* ✅ 이미지 크기 축소 */
+  height: 85%;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+.character-rect-img:hover {
+  transform: scale(1.02);
+}
+
+/* 오른쪽 폼 영역 */
+.form-area {
+  flex: 1.1;
+  padding: 45px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden; /* ✅ 내부 높이 제한 */
+}
+
+/* 제목 */
+.form-area h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #222;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+/* 폼 필드 */
+.signup-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* ✅ 입력창과 에러 메시지를 묶는 래퍼 */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  min-height: 58px; /* ✅ 에러 메시지 공간 확보 */
+  justify-content: flex-start;
+}
+
+.signup-form input {
+  width: 90%;
+  padding: 10px 12px;
+  border: 1px solid #d0d7e2;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: #f9fbff;
+  transition: all 0.3s ease;
+}
+
+.signup-form input:focus {
+  border-color: #4a7dff;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(74, 125, 255, 0.25);
+  outline: none;
+}
+
+/* 에러 메시지 (공간 유지) */
+.error-message {
+  color: #e63946;
+  font-size: 12px;
+  margin-top: 3px;
+  height: 14px; /* ✅ 한 줄 높이 고정 */
+  line-height: 1.2;
+  transition: opacity 0.2s ease;
+}
+.error-message:empty {
+  opacity: 0; /* ✅ 메시지가 없을 때는 투명하게 처리 */
+}
+
+/* 버튼 */
+button[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4286f4, #3769ff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(66, 134, 244, 0.3);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #5a9bff, #4b7cff);
+  transform: translateY(-2px);
+}
+
+button[disabled] {
+  background: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
