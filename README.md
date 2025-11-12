@@ -1,4 +1,4 @@
-# scheduling backend
+# scheduling frontend
 스케줄링 시스템 프론트 개발
 ![메인 페이지](./public/images/title-page.png)
 
@@ -19,3 +19,4 @@ npm install
 # 3) 개발 서버 실행
 npm start
 ```
+
