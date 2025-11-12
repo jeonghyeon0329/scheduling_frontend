@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchAdminUsers } from '../../api/adminApis';
 // import axios from 'axios';
 import './AdminPage.css';
+import { toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminPage() {
   const [users, setUsers] = useState([]);
@@ -30,7 +32,9 @@ function AdminPage() {
         setUsers(data);
       } catch (error) {
         console.error('사용자 목록 로딩 실패:', error);
-        alert('사용자 목록을 불러오는 중 오류가 발생했습니다.');
+        toast.error("사용자 목록을 불러오는 중 오류가 발생했습니다.", {
+            position: "top-center",
+          });
       } finally {
         setLoading(false);
       }

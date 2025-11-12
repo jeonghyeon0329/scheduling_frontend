@@ -4,6 +4,8 @@ import './ClockScheduler.css';
 import moment from 'moment';
 import 'moment/locale/ko';
 import 'moment/locale/en-gb';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ClockScheduler = ({ lang, selectedDate, schedules, setSchedules }) => {
   /** =====================
@@ -234,7 +236,10 @@ const ClockScheduler = ({ lang, selectedDate, schedules, setSchedules }) => {
 
     if (effectiveStart === null || effectiveEnd === null || inputText.trim() === '') return;
     if (Math.abs(effectiveEnd - effectiveStart) < 7.5) {
-      alert('30분 이상이어야 저장할 수 있습니다.');
+      toast.error("30분 이상의 스케줄만 저장할 수 있습니다.", {
+        position: "top-center",
+      });
+      
       resetInput();
       return;
     }

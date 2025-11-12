@@ -70,12 +70,12 @@ function MainPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    const storedUserName = localStorage.getItem('userName');
-    if (storedUserName) {
-      setUser({ userName: storedUserName });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedUserName = localStorage.getItem('userName');
+  //   if (storedUserName) {
+  //     setUser({ userName: storedUserName });
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   console.log('✅ [MainPage] user 정보:', user);
@@ -151,9 +151,10 @@ function MainPage() {
                 )}
               </div>
             ) : (
-              <button className="btn login" onClick={() => setShowLoginPopup(true)}>
-                {texts.login}
-              </button>
+              // <button className="btn login" onClick={() => setShowLoginPopup(true)}>
+              //   {texts.login}
+              // </button>
+              <div></div>
             )}
 
             <div className="lang-selector" ref={langMenuRef}>
